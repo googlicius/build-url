@@ -1,5 +1,5 @@
 {
-  "name": "build-url",
+  "name": "@googlicius/build-url",
   "version": "1.0.0",
   "description": "Build url helper",
   "main": "dist/index.js",

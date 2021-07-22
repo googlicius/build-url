@@ -5,13 +5,13 @@ A helper to build url with query params as easy way. Helpful when your applicati
 ## Installation
 
 ```
-npm install build-url
+npm install @googlicius/build-url
 ```
 
 Or Yarn:
 
 ```
-yarn add buil-url
+yarn add @googlicius/buil-url
 ```
 
 ## Usage
@@ -26,4 +26,29 @@ buildUrl('http://my-website.com/post', {
 });
 
 // Output: http://my-website.com/post?page=2
+```
+
+Add another query param:
+
+```javascript
+import buildUrl from 'build-url';
+
+buildUrl('http://my-website.com/post?page=2', {
+  queryParams: {
+    sort: 'title:asc',
+  },
+});
+
+// Output: http://my-website.com/post?page=2&sort=title%3Aasc
+```
+
+Remove a query param:
+
+```javascript
+buildUrl('images?page=2&sort=title:asc', {
+  queryParams: {
+    page: null,
+  },
+});
+// Output: /images?sort=title%3Aasc
 ```
