@@ -17,7 +17,7 @@ yarn add @googlicius/buil-url
 ## Usage
 
 ```javascript
-import buildUrl from 'build-url';
+import buildUrl from '@googlicius/build-url';
 
 buildUrl('http://my-website.com/post', {
   queryParams: {
@@ -31,7 +31,7 @@ buildUrl('http://my-website.com/post', {
 Add another query param:
 
 ```javascript
-import buildUrl from 'build-url';
+import buildUrl from '@googlicius/build-url';
 
 buildUrl('http://my-website.com/post?page=2', {
   queryParams: {
