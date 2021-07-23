@@ -1,7 +1,7 @@
 import buildUrl from './index';
 
 describe('Build Url test', () => {
-  test('Page is 2', () => {
+  test('Add a query param', () => {
     const url = buildUrl('http://my-website.com/post', {
       queryParams: {
         page: 2,
@@ -11,7 +11,7 @@ describe('Build Url test', () => {
     expect(url).toEqual('http://my-website.com/post?page=2');
   });
 
-  test('Page and sort ', () => {
+  test('Add another query param', () => {
     const url = buildUrl('http://my-website.com/post?page=2', {
       queryParams: {
         sort: 'title:asc',
@@ -62,5 +62,57 @@ describe('Build Url test', () => {
     });
 
     expect(url).toEqual('/images?sort=title%3Aasc');
+  });
+
+  test('Add hash', () => {
+    const url = buildUrl('/posts', {
+      hash: 'my-hash',
+    });
+
+    expect(url).toEqual('/posts#my-hash');
+  });
+
+  test('Replace hash', () => {
+    const url = buildUrl('/posts?page=2#first-hash', {
+      hash: '#second-hash',
+    });
+
+    expect(url).toEqual('/posts?page=2#second-hash');
+  });
+
+  test('Add path', () => {
+    const url = buildUrl({ path: 'posts' });
+    const url2 = buildUrl({ path: '/posts' });
+    const url3 = buildUrl('http://my-website.com', {
+      path: 'posts',
+    });
+
+    expect(url).toEqual('/posts');
+    expect(url2).toEqual('/posts');
+    expect(url3).toEqual('http://my-website.com/posts');
+  });
+
+  test('Replace path', () => {
+    const url = buildUrl('posts?page=2', {
+      path: 'stories',
+    });
+    const url2 = buildUrl('http://my-website.com/posts?page=2', {
+      path: 'stories',
+    });
+
+    expect(url).toEqual('/stories?page=2');
+    expect(url2).toEqual('http://my-website.com/stories?page=2');
+  });
+
+  test('Delete path', () => {
+    const url = buildUrl('posts?page=2', {
+      path: null,
+    });
+    const url2 = buildUrl('http://my-website.com/posts?page=2', {
+      path: null,
+    });
+
+    expect(url).toEqual('/?page=2');
+    expect(url2).toEqual('http://my-website.com/?page=2');
   });
 });

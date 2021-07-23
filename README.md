@@ -1,4 +1,4 @@
-# BUILD URL
+# Build URL
 
 A helper to build url with query params as easy way. Helpful when your application routing or state management based on URL query params.
 
@@ -28,11 +28,9 @@ buildUrl('http://my-website.com/post', {
 // Output: http://my-website.com/post?page=2
 ```
 
-Add another query param:
+Add another query param
 
 ```javascript
-import buildUrl from '@googlicius/build-url';
-
 buildUrl('http://my-website.com/post?page=2', {
   queryParams: {
     sort: 'title:asc',
@@ -42,7 +40,19 @@ buildUrl('http://my-website.com/post?page=2', {
 // Output: http://my-website.com/post?page=2&sort=title%3Aasc
 ```
 
-Remove a query param:
+Input url/path is omitted
+
+```javascript
+buildUrl({
+  queryParams: {
+    sort: 'title:asc',
+  },
+});
+
+// Output: /?sort=title%3Aasc
+```
+
+Remove a query param
 
 ```javascript
 buildUrl('images?page=2&sort=title:asc', {
@@ -50,5 +60,24 @@ buildUrl('images?page=2&sort=title:asc', {
     page: null,
   },
 });
+
 // Output: /images?sort=title%3Aasc
 ```
+
+Always returns absolute url
+
+```javascript
+// Assume that current url is: http://awesome-website.com
+
+buildUrl('/posts', {
+  returnAbsoluteUrl: true,
+  queryParams: {
+    page: 2,
+  },
+});
+
+// Output: http://awesome-website.com/posts?page=2
+```
+
+## License
+MIT
