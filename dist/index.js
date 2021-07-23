@@ -1,28 +1,27 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-function buildUrl(strUrl, options) {
+function buildUrl(inputUrl, options) {
     let url;
-    let isValidUrl = false;
-    if (typeof strUrl === 'string') {
-        try {
-            url = new URL(strUrl);
-        }
-        catch (error) {
-            isValidUrl = true;
+    let isValidInputUrl = false;
+    try {
+        url = new URL(inputUrl);
+    }
+    catch (error) {
+        isValidInputUrl = true;
+        if (typeof inputUrl === 'string') {
             const host = typeof window === 'undefined'
                 ? 'http://example.com'
                 : window.location.origin;
-            url = new URL(`${host}/${strUrl}`);
+            url = new URL(`${host}/${inputUrl.replace(/^\/|\/$/g, '')}`);
+        }
+        else {
+            url =
+                typeof window === 'undefined'
+                    ? new URL('http://example.com')
+                    : new URL(window.location.href);
         }
     }
-    else {
-        isValidUrl = true;
-        url =
-            typeof window === 'undefined'
-                ? new URL('http://example.com')
-                : new URL(window.location.href);
-    }
-    const _options = typeof strUrl === 'string' ? options : strUrl;
+    const _options = typeof inputUrl === 'string' ? options : inputUrl;
     if (_options === null || _options === void 0 ? void 0 : _options.queryParams) {
         for (const key in _options.queryParams) {
             if (Object.prototype.hasOwnProperty.call(_options.queryParams, key)) {
@@ -36,8 +35,17 @@ function buildUrl(strUrl, options) {
             }
         }
     }
-    if (isValidUrl) {
-        return url.pathname + url.search;
+    if (_options === null || _options === void 0 ? void 0 : _options.path) {
+        url.pathname = _options.path;
+    }
+    if ((_options === null || _options === void 0 ? void 0 : _options.path) === null) {
+        url.pathname = '';
+    }
+    if (_options === null || _options === void 0 ? void 0 : _options.hash) {
+        url.hash = _options.hash;
+    }
+    if (isValidInputUrl && !(_options === null || _options === void 0 ? void 0 : _options.returnAbsoluteUrl)) {
+        return url.pathname + url.search + url.hash;
     }
     return url.toString();
 }

@@ -1,6 +1,6 @@
 {
   "name": "@googlicius/build-url",
-  "version": "1.0.4",
+  "version": "1.0.7",
   "description": "Build url helper",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -13,9 +13,7 @@
     "lint": "eslint . --ext .ts",
     "build": "tsc -p tsconfig-build.json",
     "test": "jest",
-    "prepare": "husky install",
-    "publish": "yarn build && npm publish --access-public",
-    "publish:dry-run": "yarn build && npm publish --access-public --dry-run"
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@babel/core": "^7.14.8",

@@ -1,6 +1,9 @@
 export interface UrlOptions {
-    queryParams: {
+    queryParams?: {
         [x: string]: any;
     };
+    hash?: string;
+    path?: string;
+    returnAbsoluteUrl?: boolean;
 }
-export default function buildUrl(strUrl: string | UrlOptions, options?: UrlOptions): string;
+export default function buildUrl(inputUrl: string | UrlOptions, options?: UrlOptions): string;
