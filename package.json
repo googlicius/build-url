@@ -1,6 +1,6 @@
 {
   "name": "@googlicius/build-url",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Build url helper",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -9,6 +9,10 @@
   "files": [
     "/dist"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/googlicius/build-url.git"
+  },
   "scripts": {
     "lint": "eslint . --ext .ts",
     "build": "tsc -p tsconfig-build.json",
