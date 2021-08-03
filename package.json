@@ -1,6 +1,6 @@
 {
   "name": "@googlicius/build-url",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Build url helper",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
