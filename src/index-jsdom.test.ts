@@ -5,6 +5,10 @@
 import buildUrl from './index';
 
 describe('Build URL test in browser environment', () => {
+  test('Return current browser path (include query, hash)', () => {
+    expect(buildUrl()).toEqual('/');
+  });
+
   test('Return url with current browser url', () => {
     const url = buildUrl({
       returnAbsoluteUrl: true,

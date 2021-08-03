@@ -8,7 +8,7 @@ export interface UrlOptions {
 }
 
 export default function buildUrl(
-  inputUrl: string | UrlOptions,
+  inputUrl?: string | UrlOptions,
   options?: UrlOptions,
 ) {
   let url: URL;
