@@ -11,7 +11,7 @@ npm install @googlicius/build-url
 Or Yarn:
 
 ```
-yarn add @googlicius/buil-url
+yarn add @googlicius/build-url
 ```
 
 ## Usage
